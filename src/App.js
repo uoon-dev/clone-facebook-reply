@@ -1,13 +1,12 @@
 import React from 'react';
-import Layout from './hoc/Layout/Layout';
-import logo from './logo.svg';
-import './App.css';
+import Layout from 'hocs/Layout/Layout';
+import Comments from 'containers/Feed/Comments/Comments';
 
 function App() {
   return (
     <div>
       <Layout>
-
+        <Comments></Comments>
       </Layout>
     </div>
   );
