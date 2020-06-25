@@ -8,10 +8,9 @@ const Comment = props => {
   const createCommentDispatch = () => dispatch({type: 'CREATE_COMMENT_CONTENT', payload: {
     id: 3,
     user: props.user,
-    commentContent: props.commentContent,
-    likeCount: props.likeCount,
+    commentContent: '',
+    likeCount: 0,
   }});
-  
 
   return (
     <div>

@@ -16,7 +16,19 @@ const initialState = {
         profileImageUrl: 'https://picsum.photos/seed/picsum/32/32',
       },
       commentContent: '',
-      likeCount: ''
+      likeCount: '',
+      children: [
+        {
+          id: 1,
+          user: {
+            id: 0,
+            name: 'uoon',
+            profileImageUrl: 'https://picsum.photos/seed/picsum/32/32',
+          },
+          commentContent: '',
+          likeCount: '',
+        }
+      ] 
     },
   ]
 };
