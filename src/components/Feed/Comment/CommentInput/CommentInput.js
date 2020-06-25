@@ -9,13 +9,25 @@ import * as text from 'constants/text';
 
 
 const commentInput = props => {
+  const isEditing = false;
+  const onEnterSave = (e) => { 
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (props.id) {
+        // props.updateCommentContent();
+      } else {
+        props.createCommentContent();
+      }
+    }
+  }
   return (
     <div className="CommentForm">
-      <TextareaAutosize 
+      <TextareaAutosize
+        defaultValue={props.commentContent} 
         placeholder={text.comment.reply}
-        onKeyDown={(e) => e.key === 'Enter' ? props.createCommentContent() : null}
+        onKeyDown={onEnterSave}
+        onChange={props.onChangeCommentContent}
         minRows={1}
-        value={props.content}
         name="commentContent"
       />
     </div>

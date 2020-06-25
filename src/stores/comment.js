@@ -27,17 +27,19 @@ const initialState = {
           },
           commentContent: '',
           likeCount: '',
+          children: []
         },
-        {
-          id: 2,
-          user: {
-            id: 0,
-            name: 'uoon',
-            profileImageUrl: 'https://picsum.photos/seed/picsum/32/32',
-          },
-          commentContent: '',
-          likeCount: '',
-        }        
+        // {
+        //   id: 2,
+        //   user: {
+        //     id: 0,
+        //     name: 'uoon',
+        //     profileImageUrl: 'https://picsum.photos/seed/picsum/32/32',
+        //   },
+        //   commentContent: '',
+        //   likeCount: '',
+        //   children: []
+        // }        
       ] 
     },
   ]
@@ -46,15 +48,15 @@ const initialState = {
 export default handleActions (
   {
     [CREATE_COMMENT_CONTENT]: (state, action) => {
-      console.log(action);
       return ({
       ...state,
-      // list: state.list.concat({
-      //   id: action.payload.id,
-      //   user: action.payload.user,
-      //   commentContent: action.payload.content,
-      //   likeCount: action.payload.likeCount,
-      // })
+      list: state.list.concat({
+        id: action.payload.id,
+        user: action.payload.user,
+        commentContent: action.payload.commentContent,
+        likeCount: action.payload.likeCount,
+        children: []
+      })
     })
   },    
     // [UPDATE_COMMENT_CONTENT]: (state, action) => ({
