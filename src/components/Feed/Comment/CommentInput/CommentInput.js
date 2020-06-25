@@ -12,7 +12,7 @@ const commentInput = props => {
   return (
     <div className="CommentForm">
       <TextareaAutosize 
-        defaultValue={text.comment.reply}
+        placeholder={text.comment.reply}
         onKeyDown={(e) => e.key === 'Enter' ? props.createCommentContent() : null}
         minRows={1}
         value={props.content}

@@ -27,7 +27,17 @@ const initialState = {
           },
           commentContent: '',
           likeCount: '',
-        }
+        },
+        {
+          id: 2,
+          user: {
+            id: 0,
+            name: 'uoon',
+            profileImageUrl: 'https://picsum.photos/seed/picsum/32/32',
+          },
+          commentContent: '',
+          likeCount: '',
+        }        
       ] 
     },
   ]

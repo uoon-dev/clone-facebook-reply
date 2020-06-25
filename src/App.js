@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from 'hocs/Layout/Layout';
-import Comments from 'containers/Feed/Comments/Comments';
+import CommentsWrapper from 'containers/Feed/Comments/CommentsWrapper';
 
 function App() {
   return (
     <Layout>
-      <Comments></Comments>
+      <CommentsWrapper/>
     </Layout>
   );
 }
