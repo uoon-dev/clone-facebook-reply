@@ -4,11 +4,9 @@ import Comments from 'containers/Feed/Comments/Comments';
 
 function App() {
   return (
-    <div>
-      <Layout>
-        <Comments></Comments>
-      </Layout>
-    </div>
+    <Layout>
+      <Comments></Comments>
+    </Layout>
   );
 }
 

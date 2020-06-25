@@ -1,12 +1,27 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Profile from './Profile/Profile';
+import CommentInput from './CommentInput/CommentInput';
 
-const comment = props => {
+const Comment = props => {
+  const dispatch = useDispatch();
+  const createCommentDispatch = () => dispatch({type: 'CREATE_COMMENT_CONTENT', payload: {
+    id: 3,
+    user: props.user,
+    commentContent: props.commentContent,
+    likeCount: props.likeCount,
+  }});
+  
+
   return (
     <div>
-      <Profile></Profile>
+      <Profile profileImageUrl={props.user.profileImageUrl} />
+      <CommentInput 
+        value={props.commentContent}
+        createCommentContent={createCommentDispatch}
+      />
     </div>
   )
 }
 
-export default comment;
+export default Comment;
