@@ -18,6 +18,15 @@ const CommentInput = props => {
     props.createCommentContent();
   }
 
+  useEffect(() => {
+    const commentTextArea = textarea.current;
+    if (commentTextArea) {
+      const commentLength = commentTextArea.value.length;
+      commentTextArea.focus();
+      commentTextArea.setSelectionRange(commentLength, commentLength)
+    }
+  }, [isEditing])
+
   const commentInputBody = (
     isEditing || props.isNewPendingComment ? 
       <TextareaAutosize
@@ -27,8 +36,8 @@ const CommentInput = props => {
         onKeyPress={(e) => e.key === 'Enter' ? onEnterSave(e) : ''}
         onChange={props.onChangeCommentContent}
         minRows={1}
+        autoFocus={props.isNewPendingComment ? true : false}
         name="commentContent"
-        autoFocus
         css={styles.textarea}
       /> :
       <div className="CommentStaticInput" css={styles.commentInput}>
