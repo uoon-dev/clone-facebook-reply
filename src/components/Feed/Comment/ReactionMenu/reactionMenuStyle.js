@@ -5,6 +5,8 @@ import { blue_5 } from 'styles/colors';
 export const commentReactionMenus = css`
   ${resetLayout}
   display: flex;
+  padding-top: 2px;
+  margin-left: 12px;
 `;
 
 export const commentReactionMenu = css`

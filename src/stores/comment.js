@@ -15,8 +15,9 @@ const initialState = {
         name: 'uoon',
         profileImageUrl: mumrik,
       },
-      commentContent: '',
+      commentContent: 'test',
       likeCount: '',
+      isEditing: false,
       children: [
         {          
           id: 1,
@@ -26,8 +27,9 @@ const initialState = {
             name: 'uoon',
             profileImageUrl: mumrik,
           },
-          commentContent: '',
+          commentContent: 'test',
           likeCount: '',
+          isEditing: false,
           children: []
         },
         // {
@@ -55,6 +57,7 @@ export default handleActions (
         user: action.payload.user,
         commentContent: action.payload.commentContent,
         likeCount: action.payload.likeCount,
+        isEditing: action.payload.isEditing,
         children: []
       }
       return ({
@@ -62,7 +65,7 @@ export default handleActions (
       list: action.payload.parentId ? 
         state.list.map(comment => {
           if (comment.id === action.payload.parentId) {
-            comment.children.push(createdCommentData)
+            comment.children.push(createdCommentData);
           }
           return comment;
         }) :

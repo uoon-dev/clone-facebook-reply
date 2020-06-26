@@ -18,4 +18,10 @@ export const commentItem = css`
       width: 2px;    
     }
   }
+
+  &:hover {
+    .CommentSettingButton {
+      visibility: visible;
+    }
+  }  
 `;

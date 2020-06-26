@@ -17,19 +17,23 @@ const Comment = props => {
       user: props.user,
       commentContent: `<a>${props.user.name}</a>`+ commentContent,
       likeCount: 0,
+      isEditing: false,
       children: []
     }});
-  const reactionMenu = props.id ? <ReactionMenu /> : null;
+    const isNewPendingComment = typeof props.id === "undefined"; 
+  const reactionMenu = !isNewPendingComment ? <ReactionMenu /> : null;
+
   // const updateCommentInputDispatch = () => dispatch({type: 'UPDATE_COMMENT_INPUT', payload: {
   //   commentContent: 
   // }});
 
   return (
-    <div className={`CommentItem ${props.id ? 'CreatedComment' : ''}`} css={styles.commentItem}>
+    <div className={`CommentItem ${!isNewPendingComment ? 'CreatedComment' : ''}`} css={styles.commentItem}>
       <Profile profileImageUrl={props.user.profileImageUrl} isChildComment={props.parentId} />
       <div>
         <CommentInput 
           id={props.id}
+          isNewPendingComment={isNewPendingComment}
           parentId={props.parentId}
           commentContent={props.commentContent}
           createCommentContent={createCommentDispatch}
