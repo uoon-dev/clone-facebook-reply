@@ -1,6 +1,6 @@
 import { css } from '@emotion/core';
 import { resetLayout, resetList, resetButton, resetFocus } from 'styles/customProperties';
-import { blue_50 } from 'styles/colors';
+import { blue_5 } from 'styles/colors';
 
 export const commentReactionMenus = css`
   ${resetLayout}
@@ -22,8 +22,13 @@ export const commentReactionMenu = css`
 export const commentReactionMenuButton = css`
   ${resetButton}
   ${resetFocus}
-  color: ${blue_50};
+  color: ${blue_5};
   font-size: 12px;
+
+  &:focus {
+    outline: none;
+  }
+  
   &:hover {
     text-decoration: underline;
   }

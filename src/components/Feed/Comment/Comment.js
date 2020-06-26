@@ -25,11 +25,12 @@ const Comment = props => {
   // }});
 
   return (
-    <div className={`CommentItem ${reactionMenu ? 'HasReaction' : ''}`} css={styles.commentItem}>
+    <div className={`CommentItem ${props.id ? 'CreatedComment' : ''}`} css={styles.commentItem}>
       <Profile profileImageUrl={props.user.profileImageUrl} isChildComment={props.parentId} />
       <div>
         <CommentInput 
           id={props.id}
+          parentId={props.parentId}
           commentContent={props.commentContent}
           createCommentContent={createCommentDispatch}
           onChangeCommentContent={(e) => onChangeCommentContent(e.target.value)}

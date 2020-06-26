@@ -1,11 +1,21 @@
 import { css } from '@emotion/core';
+import { blue_10 } from 'styles/colors'
 
 export const commentItem = css`
   display: flex;
-  align-items: center;
+  align-items: end;
   padding: 4px 12px;
+  position: relative;
 
-  &.HasReaction {
-    align-items: end;
+  &.CreatedComment {
+    &::before {
+      background-color: ${blue_10};
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      top: 0;
+      content: '';
+      width: 2px;    
+    }
   }
 `;
