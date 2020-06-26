@@ -8,10 +8,32 @@ export const resetLayout = css`
 export const resetAppearance = css`
   border: 0;
   appearance: none;
+  outline: none;
 `;
 
 export const resetList = css`
   ${resetLayout}
   ${resetAppearance}
   list-style: none;
+`;
+
+export const resetButton = css`
+  ${resetLayout}
+  ${resetAppearance}
+  background: none;
+  line-height: 0;
+  box-shadow: none;
+  cursor: pointer;
+`;
+
+export const resetHover = css`
+  &:hover {
+    ${resetAppearance}
+  }
+`;
+
+export const resetFocus = css`
+  &:focus {
+    ${resetAppearance}
+  }
 `;
