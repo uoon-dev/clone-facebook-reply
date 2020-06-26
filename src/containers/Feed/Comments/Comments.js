@@ -1,5 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import * as styles from './commentsStyle';
+
 import Comment from 'components/Feed/Comment/Comment';
 
 const Comments = props => {
@@ -7,7 +9,7 @@ const Comments = props => {
   
   const commentLists = (children || []).map((commentStatus, index) => {
     return (
-      <li className="Comment" key={commentStatus.id}>
+      <li className="CommentList" css={styles.commentList} key={commentStatus.id}>
         <Comment
           id={commentStatus.id}
           parentId={commentStatus.parentId}
@@ -26,7 +28,7 @@ const Comments = props => {
     )
   })
   return (
-      <ul className="CommentList">
+      <ul className="CommentList_Group">
         {commentLists}
       </ul>
   )

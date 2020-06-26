@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Profile from './Profile/Profile';
 import CommentInput from './CommentInput/CommentInput';
+import * as styles from './commentStyle';
 
 const Comment = props => {
   const [commentContent, onChangeCommentContent] = useState('');
@@ -19,7 +23,7 @@ const Comment = props => {
   // }});
 
   return (
-    <div>
+    <div className="CommentItem" css={styles.commentItem}>
       <Profile profileImageUrl={props.user.profileImageUrl} />
       <CommentInput 
         id={props.id}

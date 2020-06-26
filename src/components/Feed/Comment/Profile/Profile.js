@@ -1,10 +1,9 @@
-
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import * as styles from './profileStyle';
 
 const profile = props => (
-  <div>
+  <div className="CommentProfile">
     <img src={props.profileImageUrl} css={styles.proflieImage} alt="profile"></img>
   </div>
 )

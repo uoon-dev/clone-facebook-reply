@@ -21,7 +21,7 @@ const commentInput = props => {
     }
   }
   return (
-    <div className="CommentForm">
+    <div className="CommentInput">
       <TextareaAutosize
         defaultValue={props.commentContent} 
         placeholder={text.comment.reply}
@@ -29,6 +29,7 @@ const commentInput = props => {
         onChange={props.onChangeCommentContent}
         minRows={1}
         name="commentContent"
+        autoFocus
       />
     </div>
   )
