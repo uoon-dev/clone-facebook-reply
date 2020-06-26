@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Profile from './Profile/Profile';
 import CommentInput from './CommentInput/CommentInput';
+import ReactionMenu from './ReactionMenu/ReactionMenu';
 import * as styles from './commentStyle';
 
 const Comment = props => {
@@ -14,23 +15,27 @@ const Comment = props => {
       id: Date.now(),
       parentId: props.parentId,
       user: props.user,
-      commentContent,
+      commentContent: `<a>${props.user.name}</a>`+ commentContent,
       likeCount: 0,
       children: []
     }});
+  const reactionMenu = props.id ? <ReactionMenu /> : null;
   // const updateCommentInputDispatch = () => dispatch({type: 'UPDATE_COMMENT_INPUT', payload: {
   //   commentContent: 
   // }});
 
   return (
-    <div className="CommentItem" css={styles.commentItem}>
+    <div className={`CommentItem ${reactionMenu ? 'HasReaction' : ''}`} css={styles.commentItem}>
       <Profile profileImageUrl={props.user.profileImageUrl} isChildComment={props.parentId} />
-      <CommentInput 
-        id={props.id}
-        commentContent={props.commentContent}
-        createCommentContent={createCommentDispatch}
-        onChangeCommentContent={(e) => onChangeCommentContent(e.target.value)}
-      />
+      <div>
+        <CommentInput 
+          id={props.id}
+          commentContent={props.commentContent}
+          createCommentContent={createCommentDispatch}
+          onChangeCommentContent={(e) => onChangeCommentContent(e.target.value)}
+        />
+        {reactionMenu}
+      </div>
     </div>
   )
 }
