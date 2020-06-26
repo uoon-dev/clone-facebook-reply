@@ -28,7 +28,7 @@ const Comments = props => {
     )
   })
   return (
-      <ul className="CommentList_Group">
+      <ul className={`CommentList_Group ${children.parentId ? 'IsChildComments' : ''}`} css={styles.commentListGroup}>
         {commentLists}
       </ul>
   )

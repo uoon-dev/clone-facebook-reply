@@ -1,5 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
-
+import mumrik from "images/mumrik.png";
 const CREATE_COMMENT_CONTENT = 'CREATE_COMMENT_CONTENT';
 // const UPDATE_COMMENT_CONTENT = 'UPDATE_COMMENT_CONTENT';
 
@@ -13,7 +13,7 @@ const initialState = {
       user: {
         id: 0,
         name: 'uoon',
-        profileImageUrl: 'https://picsum.photos/seed/picsum/32/32',
+        profileImageUrl: mumrik,
       },
       commentContent: '',
       likeCount: '',
@@ -24,7 +24,7 @@ const initialState = {
           user: {
             id: 0,
             name: 'uoon',
-            profileImageUrl: 'https://picsum.photos/seed/picsum/32/32',
+            profileImageUrl: mumrik,
           },
           commentContent: '',
           likeCount: '',

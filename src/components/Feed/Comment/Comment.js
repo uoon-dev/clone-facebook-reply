@@ -24,7 +24,7 @@ const Comment = props => {
 
   return (
     <div className="CommentItem" css={styles.commentItem}>
-      <Profile profileImageUrl={props.user.profileImageUrl} />
+      <Profile profileImageUrl={props.user.profileImageUrl} isChildComment={props.parentId} />
       <CommentInput 
         id={props.id}
         commentContent={props.commentContent}
