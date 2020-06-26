@@ -4,8 +4,8 @@ import { jsx } from '@emotion/core';
 // import { useForm } from 'react-hook-form';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import * as text from 'constants/text';
-// import * as styles from './commentInputStyle';
+import { Comment } from 'constants/text';
+import * as styles from './commentInputStyle';
 
 
 const commentInput = props => {
@@ -24,12 +24,13 @@ const commentInput = props => {
     <div className="CommentInput">
       <TextareaAutosize
         defaultValue={props.commentContent} 
-        placeholder={text.comment.reply}
+        placeholder={props.parentId ? Comment.CHILD_REPLY : Comment.CREATE_REPLY }
         onKeyDown={onEnterSave}
         onChange={props.onChangeCommentContent}
         minRows={1}
         name="commentContent"
         autoFocus
+        css={styles.textarea}
       />
     </div>
   )
