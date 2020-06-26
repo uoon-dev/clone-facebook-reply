@@ -10,6 +10,7 @@ const Comments = props => {
       <li className="Comment" key={commentStatus.id}>
         <Comment
           id={commentStatus.id}
+          parentId={commentStatus.parentId}
           user={commentStatus.user}
           commentContent={commentStatus.commentContent}
           likeCount={commentStatus.likeCount}
@@ -17,8 +18,8 @@ const Comments = props => {
         <Comments children={commentStatus.children} />
         { index === children.length - 1 ? 
           <Comment
-            user={commentStatus.user}
-            
+            parentId={commentStatus.parentId}
+            user={commentStatus.user}            
           /> : null
         }
       </li>

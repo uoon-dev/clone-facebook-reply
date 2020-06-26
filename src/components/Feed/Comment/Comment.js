@@ -8,6 +8,7 @@ const Comment = props => {
   const dispatch = useDispatch();
   const createCommentDispatch = () => dispatch({type: 'CREATE_COMMENT_CONTENT', payload: {
       id: Date.now(),
+      parentId: props.parentId,
       user: props.user,
       commentContent,
       likeCount: 0,

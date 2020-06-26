@@ -9,7 +9,7 @@ export const createCommentContent = createAction(CREATE_COMMENT_CONTENT, data =>
 const initialState = {
   list: [
     { 
-      id: 0,
+      id: 1,
       user: {
         id: 0,
         name: 'uoon',
@@ -18,8 +18,9 @@ const initialState = {
       commentContent: '',
       likeCount: '',
       children: [
-        {
+        {          
           id: 1,
+          parentId: 1,
           user: {
             id: 0,
             name: 'uoon',
@@ -48,15 +49,24 @@ const initialState = {
 export default handleActions (
   {
     [CREATE_COMMENT_CONTENT]: (state, action) => {
-      return ({
-      ...state,
-      list: state.list.concat({
+      const createdCommentData = {
         id: action.payload.id,
+        parentId: action.payload.parentId,
         user: action.payload.user,
         commentContent: action.payload.commentContent,
         likeCount: action.payload.likeCount,
         children: []
-      })
+      }
+      return ({
+      ...state,
+      list: action.payload.parentId ? 
+        state.list.map(comment => {
+          if (comment.id === action.payload.parentId) {
+            comment.children.push(createdCommentData)
+          }
+          return comment;
+        }) :
+        state.list.concat(createdCommentData)
     })
   },    
     // [UPDATE_COMMENT_CONTENT]: (state, action) => ({
