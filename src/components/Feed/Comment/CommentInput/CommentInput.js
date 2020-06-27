@@ -28,11 +28,12 @@ const CommentInput = props => {
 
     if (isEnterPressed && !isShiftPressed) {
       e.preventDefault();
+      const value = e.target.value;
       if (e.target.value.length === 0) return;
       if (props.isNewPendingComment) {
-        props.createCommentContent();
+        props.createCommentContent(value);
       } else {
-        props.updateCommentContent();
+        props.updateCommentContent(value);
         setIsEditing(false);
       }
     }
@@ -57,7 +58,6 @@ const CommentInput = props => {
         defaultValue={props.commentContent} 
         placeholder={props.parentId ? Comment.CHILD_REPLY : Comment.CREATE_REPLY }
         onKeyPress={onKeyHandler}
-        onChange={props.onChangeCommentContent}
         minRows={1}
         autoFocus={props.isNewPendingComment ? true : false}
         name="commentContent"

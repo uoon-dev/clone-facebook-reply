@@ -4,7 +4,7 @@ import { blue_10 } from 'styles/colors'
 export const commentItem = css`
   display: flex;
   align-items: end;
-  padding: 4px 12px;
+  padding: 6px 12px;
   position: relative;
 
   // &.CreatedComment {

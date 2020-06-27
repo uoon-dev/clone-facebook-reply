@@ -11,24 +11,25 @@ import ReactionMenu from './ReactionMenu/ReactionMenu';
 import * as styles from './commentStyle';
 
 const Comment = props => {
-  const [commentContent, onChangeCommentContent] = useState('');
   const activeUser = useSelector(state => state.user.activeUser);
   const dispatch = useDispatch();
-  const createCommentDispatch = () => { 
+  const createCommentDispatch = (commentValue) => { 
     return dispatch({type: 'CREATE_COMMENT_CONTENT', payload: {
       id: uuidv4(),
       parentId: props.parentId,
       user: activeUser,
-      commentContent,
+      commentContent: commentValue,
       likeCount: 0,
       children: [],
       targetCommentInfo: props.targetCommentInfo
     }})
   };
-  const updateCommentDispatch = () => dispatch({type: 'UPDATE_COMMENT_CONTENT', payload: {
+  const updateCommentDispatch = (commentValue) => { 
+    return dispatch({type: 'UPDATE_COMMENT_CONTENT', payload: {
       id: props.id,
-      commentContent
+      commentContent: commentValue
     }});
+  }
   const reactionMenu = !props.isNewPendingComment ? 
     <ReactionMenu 
       id={props.id} 
@@ -50,7 +51,6 @@ const Comment = props => {
           commentContent={props.commentContent}
           createCommentContent={createCommentDispatch}
           updateCommentContent={updateCommentDispatch}
-          onChangeCommentContent={(e) => onChangeCommentContent(e.target.value)}
         />
         {reactionMenu}
       </div>

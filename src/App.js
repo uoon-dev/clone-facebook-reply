@@ -7,6 +7,14 @@ import * as styles from './appStyle';
 import Layout from 'hocs/Layout/Layout';
 import CommentsWrapper from 'containers/Feed/Comments/CommentsWrapper';
 
+/**
+ * Todo
+ * 1. 코멘트 입력창 브레이크 라인 구현
+ * 2. 삭제 기능
+ * 3. 좋아요 기능
+ * 4. 코멘트 입력창 오토 포커싱
+ * 5. 대댓글 가리기 - 보여주기
+ */
 
 const App = () => {
   const dispatch = useDispatch();
