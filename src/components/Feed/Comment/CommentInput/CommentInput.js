@@ -22,13 +22,19 @@ const CommentInput = props => {
     }
   }, [isEditing])
 
-  const onEnterSave = (e) => { 
-    e.preventDefault();
-    if (props.isNewPendingComment) {
-      props.createCommentContent();
-    } else {
-      props.updateCommentContent();
-      setIsEditing(false);
+  const onKeyHandler = (e) => { 
+    const isEnterPressed = e.key === 'Enter';
+    const isShiftPressed = e.shiftKey;
+
+    if (isEnterPressed && !isShiftPressed) {
+      e.preventDefault();
+      if (e.target.value.length === 0) return;
+      if (props.isNewPendingComment) {
+        props.createCommentContent();
+      } else {
+        props.updateCommentContent();
+        setIsEditing(false);
+      }
     }
   }
 
@@ -50,7 +56,7 @@ const CommentInput = props => {
         ref={textarea}
         defaultValue={props.commentContent} 
         placeholder={props.parentId ? Comment.CHILD_REPLY : Comment.CREATE_REPLY }
-        onKeyPress={(e) => e.key === 'Enter' ? onEnterSave(e) : ''}
+        onKeyPress={onKeyHandler}
         onChange={props.onChangeCommentContent}
         minRows={1}
         autoFocus={props.isNewPendingComment ? true : false}

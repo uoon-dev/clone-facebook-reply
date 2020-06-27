@@ -1,21 +1,14 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { useDispatch } from 'react-redux';
 import * as styles from './reactionMenuStyle';
 
 const ReactionMenu = props => {
-  const dispatch = useDispatch();
-  const setTargetInfoDispatch = () => dispatch({type: 'SET_COMMENT_TARGET_INFO', payload: {
-      id: props.id,
-      user: props.user,
-    }});
   const onClickReply = () => {
     if (props.parentId) {
       props.setTargetCommentInfo({
         id: props.id,
         user: props.user,
       });
-      // setTargetInfoDispatch();
     } else {
 
     }

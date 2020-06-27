@@ -20,6 +20,8 @@ const initialState = {
       },
       commentContent: 'test',
       likeCount: '',
+      // children: [
+      // ],
       children: [
         {          
           id: 2345,
@@ -42,38 +44,28 @@ const initialState = {
           },
           commentContent: 'test3',
           likeCount: '',
-        },
-        {
-          id: 3457,
-          parentId: 1234,
-          targetCommentInfo: {
-            id: 3457,
-            user: {
-              id: 3,
-              name: 'hiden',
-              profileImageUrl: mumrik,
-            }
-          },
-          user: {
-            id: 0,
-            name: 'uoon',
-            profileImageUrl: mumrik,
-          },
-          commentContent: 'test3',
-          likeCount: '',
-        },        
-        // {
-        //   id: 2,
-        //   user: {
-        //     id: 0,
-        //     name: 'uoon',
-        //     profileImageUrl: 'https://picsum.photos/seed/picsum/32/32',
-        //   },
-        //   commentContent: '',
-        //   likeCount: '',
-        //   children: []
-        // }        
-      ] 
+        }
+      ]
+      //   {
+      //     id: 3457,
+      //     parentId: 1234,
+      //     targetCommentInfo: {
+      //       id: 3457,
+      //       user: {
+      //         id: 3,
+      //         name: 'hiden',
+      //         profileImageUrl: mumrik,
+      //       }
+      //     },
+      //     user: {
+      //       id: 0,
+      //       name: 'uoon',
+      //       profileImageUrl: mumrik,
+      //     },
+      //     commentContent: 'test3',
+      //     likeCount: '',
+      //   },        
+      // ] 
     },
   ]
 };

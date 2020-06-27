@@ -40,7 +40,7 @@ export const userName = css`
   display: inline-block;
   color: ${blue_5};
   font-weight: 700;
-  &:last-of-type {
+  &:nth-of-type(2) {
     font-weight: 500;
     margin-left: 4px;
   }
