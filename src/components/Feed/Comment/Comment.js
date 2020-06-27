@@ -3,6 +3,8 @@
 import { jsx } from '@emotion/core';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid'; 
+
 import Profile from './Profile/Profile';
 import CommentInput from './CommentInput/CommentInput';
 import ReactionMenu from './ReactionMenu/ReactionMenu';
@@ -12,20 +14,19 @@ const Comment = props => {
   const [commentContent, onChangeCommentContent] = useState('');
   const dispatch = useDispatch();
   const createCommentDispatch = () => dispatch({type: 'CREATE_COMMENT_CONTENT', payload: {
-      id: Date.now(),
+      id: uuidv4(),
       parentId: props.parentId,
       user: props.user,
       commentContent: `<a>${props.user.name}</a>`+ commentContent,
       likeCount: 0,
-      isEditing: false,
       children: []
     }});
-    const isNewPendingComment = typeof props.id === "undefined"; 
+  const updateCommentDispatch = () => dispatch({type: 'UPDATE_COMMENT_CONTENT', payload: {
+      id: props.id,
+      commentContent: commentContent
+    }});
+  const isNewPendingComment = typeof props.id === "undefined"; 
   const reactionMenu = !isNewPendingComment ? <ReactionMenu /> : null;
-
-  // const updateCommentInputDispatch = () => dispatch({type: 'UPDATE_COMMENT_INPUT', payload: {
-  //   commentContent: 
-  // }});
 
   return (
     <div className={`CommentItem ${!isNewPendingComment ? 'CreatedComment' : ''}`} css={styles.commentItem}>
@@ -37,6 +38,7 @@ const Comment = props => {
           parentId={props.parentId}
           commentContent={props.commentContent}
           createCommentContent={createCommentDispatch}
+          updateCommentContent={updateCommentDispatch}
           onChangeCommentContent={(e) => onChangeCommentContent(e.target.value)}
         />
         {reactionMenu}

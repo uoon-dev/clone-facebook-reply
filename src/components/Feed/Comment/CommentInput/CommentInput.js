@@ -15,7 +15,12 @@ const CommentInput = props => {
   
   const onEnterSave = (e) => { 
     e.preventDefault();
-    props.createCommentContent();
+    if (props.isNewPendingComment) {
+      props.createCommentContent();
+    } else {
+      props.updateCommentContent();
+      setIsEditing(false);
+    }
   }
 
   useEffect(() => {

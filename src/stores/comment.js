@@ -1,15 +1,17 @@
 import { createAction, handleActions } from 'redux-actions';
 import mumrik from "images/mumrik.png";
+import mapValuesDeep from 'deepdash-es/mapValuesDeep';
+
 const CREATE_COMMENT_CONTENT = 'CREATE_COMMENT_CONTENT';
-// const UPDATE_COMMENT_CONTENT = 'UPDATE_COMMENT_CONTENT';
+const UPDATE_COMMENT_CONTENT = 'UPDATE_COMMENT_CONTENT';
 
 export const createCommentContent = createAction(CREATE_COMMENT_CONTENT, data => data);
-// export const updateCommentContent = createAction(UPDATE_COMMENT_CONTENT, text => text)
+export const updateCommentContent = createAction(UPDATE_COMMENT_CONTENT, text => text);
 
 const initialState = {
   list: [
-    { 
-      id: 1,
+    {
+      id: 1234,
       user: {
         id: 0,
         name: 'uoon',
@@ -17,11 +19,10 @@ const initialState = {
       },
       commentContent: 'test',
       likeCount: '',
-      isEditing: false,
       children: [
         {          
-          id: 1,
-          parentId: 1,
+          id: 2345,
+          parentId: 1234,
           user: {
             id: 0,
             name: 'uoon',
@@ -29,7 +30,6 @@ const initialState = {
           },
           commentContent: 'test',
           likeCount: '',
-          isEditing: false,
           children: []
         },
         // {
@@ -57,7 +57,6 @@ export default handleActions (
         user: action.payload.user,
         commentContent: action.payload.commentContent,
         likeCount: action.payload.likeCount,
-        isEditing: action.payload.isEditing,
         children: []
       }
       return ({
@@ -70,18 +69,20 @@ export default handleActions (
           return comment;
         }) :
         state.list.concat(createdCommentData)
-    })
-  },    
-    // [UPDATE_COMMENT_CONTENT]: (state, action) => ({
-    //   ...state,
-    //   comments: state.comments.concat({
-    //     id: action.payload.id,
-    //     name: action.payload.name,
-    //     profileImage: action.payload.imageUrl,
-    //     commentContent: action.payload.content,
-    //     likeCount: action.payload.likeCount,
-    //   })
-    // }),
+     })
+    },
+    [UPDATE_COMMENT_CONTENT]: (state, action) => (
+      {
+        ...state,
+        list: mapValuesDeep(
+          state.list,
+          (val, key, parentValue) => 
+            (key === 'commentContent' && parentValue.id === action.payload.id) ? 
+              action.payload.commentContent : val,
+          { leavesOnly: true }
+        )
+      }
+    )
   },
   initialState
 )
