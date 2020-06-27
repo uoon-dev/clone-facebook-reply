@@ -4,6 +4,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FaEllipsisH } from 'react-icons/fa';
 import { MdModeEdit } from 'react-icons/md';
 import { IoIosTrash } from 'react-icons/io';
@@ -15,6 +16,11 @@ import { white_0 } from 'styles/colors';
 
 const CommentSetting = props => {
   const [isCommentSettingClicked, setIsCommentSettingClicked] = useState(false);
+  const dispatch = useDispatch();
+  const deleteCommentDispatch = () => dispatch({type: 'DELETE_COMMENT_CONTENT', payload: {
+    id: props.commentId  
+  }});
+
   const uuid = uuidv4();
   return (
     <div>
@@ -54,7 +60,7 @@ const CommentSetting = props => {
         <button css={styles.updateCommentButton} onClick={() => props.setIsEditing(true)}>
           <MdModeEdit css={styles.buttonIcon}/> 수정
         </button>
-        <button css={styles.deleteCommentButton}>
+        <button css={styles.deleteCommentButton} onClick={deleteCommentDispatch}>
           <IoIosTrash css={styles.buttonIcon}/> 삭제
         </button>
       </ReactTooltip>

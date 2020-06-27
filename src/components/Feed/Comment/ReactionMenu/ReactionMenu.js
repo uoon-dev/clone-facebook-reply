@@ -6,7 +6,7 @@ const ReactionMenu = props => {
   const onClickReply = () => {
     if (props.parentId) {
       props.setTargetCommentInfo({
-        id: props.id,
+        targetId: props.id,
         user: props.user,
       });
     } else {

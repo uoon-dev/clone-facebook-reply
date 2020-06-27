@@ -67,7 +67,7 @@ const CommentInput = props => {
         <div css={styles.textarea}>
           {userNames} {props.commentContent}
         </div>
-        <CommentSetting setIsEditing={setIsEditing}/>      
+        <CommentSetting setIsEditing={setIsEditing} commentId={props.id}/>      
       </div>
   )
   
