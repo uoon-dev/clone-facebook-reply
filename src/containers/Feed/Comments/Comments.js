@@ -1,19 +1,21 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import * as styles from './commentsStyle';
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
 
 import Comment from 'components/Feed/Comment/Comment';
 
 const Comments = props => {
-  const { id, user, parentId, children } = props;
+  const { id, parentId, children } = props;
   const [targetCommentInfo, setTargetCommentInfo] = useState({});
+  const activeUser = useSelector(state => state.user.activeUser);
   const isRootComment = (children || []).length === 0 && !parentId;
   const firstNewPendingComment = isRootComment ? (
     <Comment
       parentId={id}
-      user={user}
+      user={activeUser}
       targetCommentInfo={targetCommentInfo}
       isNewPendingComment={true}
       key={uuidv4()}
@@ -42,7 +44,7 @@ const Comments = props => {
         { index === children.length - 1 ? 
           <Comment
             parentId={commentStatus.parentId}
-            user={commentStatus.user}  
+            user={activeUser}  
             targetCommentInfo={targetCommentInfo}
             isNewPendingComment={true}
             key={uuidv4()}

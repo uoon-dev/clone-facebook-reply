@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid'; 
 
 import Profile from './Profile/Profile';
@@ -12,12 +12,13 @@ import * as styles from './commentStyle';
 
 const Comment = props => {
   const [commentContent, onChangeCommentContent] = useState('');
+  const activeUser = useSelector(state => state.user.activeUser);
   const dispatch = useDispatch();
   const createCommentDispatch = () => { 
     return dispatch({type: 'CREATE_COMMENT_CONTENT', payload: {
       id: uuidv4(),
       parentId: props.parentId,
-      user: props.user,
+      user: activeUser,
       commentContent,
       likeCount: 0,
       children: [],

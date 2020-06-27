@@ -1,5 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
-import mumrik from "images/mumrik.png";
+import mumrikImage from "images/mumrik.png";
+import catImage from "images/cat.png";
 import mapValuesDeep from 'deepdash-es/mapValuesDeep';
 
 const CREATE_COMMENT_CONTENT = 'CREATE_COMMENT_CONTENT';
@@ -16,7 +17,7 @@ const initialState = {
       user: {
         id: 0,
         name: 'uoon',
-        profileImageUrl: mumrik,
+        profileImageUrl: mumrikImage,
       },
       commentContent: 'test',
       likeCount: '',
@@ -29,7 +30,7 @@ const initialState = {
           user: {
             id: 0,
             name: 'uoon',
-            profileImageUrl: mumrik,
+            profileImageUrl: mumrikImage,
           },
           commentContent: 'test',
           likeCount: '',
@@ -39,8 +40,8 @@ const initialState = {
           parentId: 1234,
           user: {
             id: 3,
-            name: 'hiden',
-            profileImageUrl: mumrik,
+            name: 'shine',
+            profileImageUrl: catImage,
           },
           commentContent: 'test3',
           likeCount: '',

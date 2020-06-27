@@ -7,17 +7,17 @@ export const commentItem = css`
   padding: 4px 12px;
   position: relative;
 
-  &.CreatedComment {
-    &::before {
-      background-color: ${blue_10};
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      top: 0;
-      content: '';
-      width: 2px;    
-    }
-  }
+  // &.CreatedComment {
+  //   &::before {
+  //     background-color: ${blue_10};
+  //     position: absolute;
+  //     bottom: 0;
+  //     left: 0;
+  //     top: 0;
+  //     content: '';
+  //     width: 2px;    
+  //   }
+  // }
 
   &:hover {
     .CommentSettingButton {
