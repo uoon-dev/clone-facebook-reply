@@ -1,4 +1,5 @@
-import React from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
 import { useSelector } from 'react-redux';
 import Comments from './Comments';
 

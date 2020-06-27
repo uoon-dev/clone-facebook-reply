@@ -37,3 +37,7 @@ export const resetFocus = css`
     ${resetAppearance}
   }
 `;
+
+export const resetLink = css`
+  text-decoration: none;
+`;

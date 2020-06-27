@@ -6,9 +6,10 @@ const CREATE_COMMENT_CONTENT = 'CREATE_COMMENT_CONTENT';
 const UPDATE_COMMENT_CONTENT = 'UPDATE_COMMENT_CONTENT';
 
 export const createCommentContent = createAction(CREATE_COMMENT_CONTENT, data => data);
-export const updateCommentContent = createAction(UPDATE_COMMENT_CONTENT, text => text);
+export const updateCommentContent = createAction(UPDATE_COMMENT_CONTENT, data => data);
 
 const initialState = {
+  commentTargetInfo: {},
   list: [
     {
       id: 1234,
@@ -30,8 +31,37 @@ const initialState = {
           },
           commentContent: 'test',
           likeCount: '',
-          children: []
         },
+        {          
+          id: 3458,
+          parentId: 1234,
+          user: {
+            id: 3,
+            name: 'hiden',
+            profileImageUrl: mumrik,
+          },
+          commentContent: 'test3',
+          likeCount: '',
+        },
+        {
+          id: 3457,
+          parentId: 1234,
+          targetCommentInfo: {
+            id: 3457,
+            user: {
+              id: 3,
+              name: 'hiden',
+              profileImageUrl: mumrik,
+            }
+          },
+          user: {
+            id: 0,
+            name: 'uoon',
+            profileImageUrl: mumrik,
+          },
+          commentContent: 'test3',
+          likeCount: '',
+        },        
         // {
         //   id: 2,
         //   user: {
@@ -57,6 +87,7 @@ export default handleActions (
         user: action.payload.user,
         commentContent: action.payload.commentContent,
         likeCount: action.payload.likeCount,
+        targetCommentInfo: action.payload.targetCommentInfo,
         children: []
       }
       return ({
@@ -82,7 +113,7 @@ export default handleActions (
           { leavesOnly: true }
         )
       }
-    )
+    ),
   },
   initialState
 )

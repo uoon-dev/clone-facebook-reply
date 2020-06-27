@@ -12,7 +12,16 @@ import { Comment } from 'constants/text';
 const CommentInput = props => {
   const [isEditing, setIsEditing] = useState(false);
   const textarea = useRef();
-  
+
+  useEffect(() => {
+    const commentTextArea = textarea.current;
+    if (commentTextArea) {
+      const commentLength = commentTextArea.value.length;
+      commentTextArea.focus();
+      commentTextArea.setSelectionRange(commentLength, commentLength)
+    }
+  }, [isEditing])
+
   const onEnterSave = (e) => { 
     e.preventDefault();
     if (props.isNewPendingComment) {
@@ -23,14 +32,17 @@ const CommentInput = props => {
     }
   }
 
-  useEffect(() => {
-    const commentTextArea = textarea.current;
-    if (commentTextArea) {
-      const commentLength = commentTextArea.value.length;
-      commentTextArea.focus();
-      commentTextArea.setSelectionRange(commentLength, commentLength)
-    }
-  }, [isEditing])
+  const targetCommentUser = (props.targetCommentInfo && props.targetCommentInfo.user) ? props.targetCommentInfo.user : {};
+  const targetUserName = props.user.name !== targetCommentUser.name ? targetCommentUser.name : '';
+  let userNames;
+  if (props.id) {
+    userNames = (
+      <span>
+        <a href="/" css={styles.userName}>{props.user.name}</a>
+        {targetUserName ? <a href="/" css={styles.userName}>{targetUserName}</a> : ''}
+      </span>
+    )
+  }
 
   const commentInputBody = (
     isEditing || props.isNewPendingComment ? 
@@ -47,7 +59,7 @@ const CommentInput = props => {
       /> :
       <div className="CommentStaticInput" css={styles.commentInput}>
         <div css={styles.textarea}>
-          {props.commentContent}
+          {userNames} {props.commentContent}
         </div>
         <CommentSetting setIsEditing={setIsEditing}/>      
       </div>

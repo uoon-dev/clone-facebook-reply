@@ -1,8 +1,26 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import { useDispatch } from 'react-redux';
 import * as styles from './reactionMenuStyle';
 
-const reactionMenu = props => {
+const ReactionMenu = props => {
+  const dispatch = useDispatch();
+  const setTargetInfoDispatch = () => dispatch({type: 'SET_COMMENT_TARGET_INFO', payload: {
+      id: props.id,
+      user: props.user,
+    }});
+  const onClickReply = () => {
+    if (props.parentId) {
+      props.setTargetCommentInfo({
+        id: props.id,
+        user: props.user,
+      });
+      // setTargetInfoDispatch();
+    } else {
+
+    }
+  }
+
   return (
     <ul className="CommentReactionMenus" css={styles.commentReactionMenus}>
       <li className="CommentReactionMenu" css={styles.commentReactionMenu}>
@@ -18,7 +36,7 @@ const reactionMenu = props => {
         <button 
           className="CommentReactionMenu_Button" 
           css={styles.commentReactionMenuButton} 
-          onClick={null}
+          onClick={onClickReply}
         >
           답글 달기
         </button>
@@ -30,4 +48,4 @@ const reactionMenu = props => {
   )
 }
 
-export default reactionMenu;
+export default ReactionMenu;
