@@ -28,8 +28,7 @@ const Comment = props => {
       id: props.id,
       commentContent
     }});
-  const isNewPendingComment = typeof props.id === "undefined"; 
-  const reactionMenu = !isNewPendingComment ? 
+  const reactionMenu = !props.isNewPendingComment ? 
     <ReactionMenu 
       id={props.id} 
       user={props.user}
@@ -38,12 +37,12 @@ const Comment = props => {
     /> : null;
 
   return (
-    <div className={`CommentItem ${!isNewPendingComment ? 'CreatedComment' : ''}`} css={styles.commentItem}>
+    <div className={`CommentItem ${!props.isNewPendingComment ? 'CreatedComment' : ''}`} css={styles.commentItem}>
       <Profile profileImageUrl={props.user.profileImageUrl} isChildComment={props.parentId} />
       <div>
         <CommentInput 
           id={props.id}
-          isNewPendingComment={isNewPendingComment}
+          isNewPendingComment={props.isNewPendingComment}
           parentId={props.parentId}
           targetCommentInfo={props.targetCommentInfo}
           user={props.user}
