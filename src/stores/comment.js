@@ -7,10 +7,15 @@ import updateDeep from 'utils/updateDeep';
 const CREATE_COMMENT_CONTENT = 'CREATE_COMMENT_CONTENT';
 const UPDATE_COMMENT_CONTENT = 'UPDATE_COMMENT_CONTENT';
 const DELETE_COMMENT_CONTENT = 'DELETE_COMMENT_CONTENT';
+const ADD_COMMENT_LIKE_USER = 'ADD_COMMENT_LIKE_USER';
+
 
 export const createCommentContent = createAction(CREATE_COMMENT_CONTENT, data => data);
 export const updateCommentContent = createAction(UPDATE_COMMENT_CONTENT, data => data);
 export const deleteCommentContent = createAction(DELETE_COMMENT_CONTENT, data => data);
+
+export const addCommentLikeUser = createAction(ADD_COMMENT_LIKE_USER, data => data);
+// export const deleteCommentContent = createAction(DELETE_COMMENT_CONTENT, data => data);
 
 const initialState = {
   list: [
@@ -94,6 +99,7 @@ export default handleActions (
         likeUsers: [],
         children: []
       }
+      
       return ({
       ...state,
       list: action.payload.parentId ? 
@@ -125,13 +131,30 @@ export default handleActions (
     [DELETE_COMMENT_CONTENT]: (state, action) => { 
       const copiedList = [...state.list];
       copiedList.forEach((comment, i) => rejectDeepById(comment, copiedList, action.payload.id, i));
+
       return (
         {
           ...state,
           list: [...copiedList]
         }
       )
-    }
+    },
+    [ADD_COMMENT_LIKE_USER]: (state, action) => {
+      const copiedList = [...state.list];
+      const identity = {
+        id: action.payload.id,
+        key: 'likeUsers'
+      }
+      const value = action.payload.likeUsers;
+      copiedList.forEach(comment => updateDeep(comment, identity, value));
+
+      return (
+        {
+          ...state,
+          list: [...copiedList]
+        }
+      )      
+    },    
   },
   initialState
 )

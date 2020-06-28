@@ -36,6 +36,7 @@ const Comment = props => {
       user={props.user}
       parentId={props.parentId}
       setTargetCommentInfo={props.setTargetCommentInfo}
+      likeUsers={props.likeUsers}
     /> : null;
 
   return (
