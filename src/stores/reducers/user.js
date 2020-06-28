@@ -1,11 +1,8 @@
-import { createAction, handleActions } from 'redux-actions';
+import { handleActions } from 'redux-actions';
+import * as actions from '../actions/user';
 import mumrikImage from "images/mumrik.png";
 import catImage from "images/cat.png";
 import { v4 as uuidv4 } from 'uuid'
-
-const CHANGE_USER_INFO = 'CHANGE_USER_INFO';
-
-export const changeUserInfo = createAction(CHANGE_USER_INFO, data => data);
 
 const testUser1 =  {
   id: uuidv4(),
@@ -27,7 +24,7 @@ const initialState = {
 
 export default handleActions (
   {
-    [CHANGE_USER_INFO]: (state, action) => {
+    [actions.changeUserInfo]: (state, action) => {
       return ({
         ...state,
         activeUser: action.payload.activeUser

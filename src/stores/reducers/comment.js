@@ -1,19 +1,8 @@
-import { createAction, handleActions } from 'redux-actions';
+import { handleActions } from 'redux-actions';
+
+import * as actions from '../actions/comment';
 import rejectDeepById from 'utils/rejectDeepById';
 import updateDeep from 'utils/updateDeep';
-
-const CREATE_COMMENT_CONTENT = 'CREATE_COMMENT_CONTENT';
-const UPDATE_COMMENT_CONTENT = 'UPDATE_COMMENT_CONTENT';
-const DELETE_COMMENT_CONTENT = 'DELETE_COMMENT_CONTENT';
-
-const UPDATE_COMMENT_LIKE_USER = 'UPDATE_COMMENT_LIKE_USER';
-
-export const createCommentContent = createAction(CREATE_COMMENT_CONTENT, data => data);
-export const updateCommentContent = createAction(UPDATE_COMMENT_CONTENT, data => data);
-export const deleteCommentContent = createAction(DELETE_COMMENT_CONTENT, data => data);
-
-export const updateCommentLikeUser = createAction(UPDATE_COMMENT_LIKE_USER, data => data);
-// export const deleteCommentContent = createAction(DELETE_COMMENT_CONTENT, data => data);
 
 const initialState = {
   list: [
@@ -87,7 +76,7 @@ const initialState = {
 
 export default handleActions (
   {
-    [CREATE_COMMENT_CONTENT]: (state, action) => {
+    [actions.createCommentContent]: (state, action) => {
       const createdCommentData = {
         id: action.payload.id,
         parentId: action.payload.parentId,
@@ -110,7 +99,7 @@ export default handleActions (
         state.list.concat(createdCommentData)
      })
     },
-    [UPDATE_COMMENT_CONTENT]: (state, action) => {
+    [actions.updateCommentContent]: (state, action) => {
       const copiedList = [...state.list];
       const identity = {
         id: action.payload.id,
@@ -126,7 +115,7 @@ export default handleActions (
         }
       )      
     },
-    [DELETE_COMMENT_CONTENT]: (state, action) => { 
+    [actions.deleteCommentContent]: (state, action) => { 
       const copiedList = [...state.list];
       copiedList.forEach((comment, i) => rejectDeepById(comment, copiedList, action.payload.id, i));
 
@@ -137,7 +126,7 @@ export default handleActions (
         }
       )
     },
-    [UPDATE_COMMENT_LIKE_USER]: (state, action) => {
+    [actions.updateCommentLikeUser]: (state, action) => {
       const copiedList = [...state.list];
       const identity = {
         id: action.payload.id,
