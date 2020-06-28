@@ -17,11 +17,7 @@ import CommentsWrapper from 'containers/Feed/Comments/CommentsWrapper';
  * 5. 수정 취소 기능
  * 
  * 기능 개발
- * 1. 좋아요 기능
- *  - state에 이미 좋아요 눌렀는지 체크하는 프로퍼티 생성
- *  - 코멘트 아이디 찾아서 likedUser에 추가하기
- * 
- * 2. localStorage 저장
+ * 1. localStorage 저장
  */
 
 const App = () => {

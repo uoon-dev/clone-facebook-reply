@@ -7,14 +7,14 @@ import updateDeep from 'utils/updateDeep';
 const CREATE_COMMENT_CONTENT = 'CREATE_COMMENT_CONTENT';
 const UPDATE_COMMENT_CONTENT = 'UPDATE_COMMENT_CONTENT';
 const DELETE_COMMENT_CONTENT = 'DELETE_COMMENT_CONTENT';
-const ADD_COMMENT_LIKE_USER = 'ADD_COMMENT_LIKE_USER';
 
+const UPDATE_COMMENT_LIKE_USER = 'UPDATE_COMMENT_LIKE_USER';
 
 export const createCommentContent = createAction(CREATE_COMMENT_CONTENT, data => data);
 export const updateCommentContent = createAction(UPDATE_COMMENT_CONTENT, data => data);
 export const deleteCommentContent = createAction(DELETE_COMMENT_CONTENT, data => data);
 
-export const addCommentLikeUser = createAction(ADD_COMMENT_LIKE_USER, data => data);
+export const updateCommentLikeUser = createAction(UPDATE_COMMENT_LIKE_USER, data => data);
 // export const deleteCommentContent = createAction(DELETE_COMMENT_CONTENT, data => data);
 
 const initialState = {
@@ -26,7 +26,7 @@ const initialState = {
         name: 'uoon',
         profileImageUrl: mumrikImage,
       },
-      commentContent: 'test',
+      commentContent: 'test',      
       likeUsers: [
         {
           id: 0,
@@ -38,7 +38,7 @@ const initialState = {
           name: 'shine',
           profileImageUrl: catImage,
         },        
-      ],
+      ],      
       children: [
         {          
           id: 2345,
@@ -139,7 +139,7 @@ export default handleActions (
         }
       )
     },
-    [ADD_COMMENT_LIKE_USER]: (state, action) => {
+    [UPDATE_COMMENT_LIKE_USER]: (state, action) => {
       const copiedList = [...state.list];
       const identity = {
         id: action.payload.id,

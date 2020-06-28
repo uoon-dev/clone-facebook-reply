@@ -1,6 +1,6 @@
 import { css } from '@emotion/core';
 import { resetLayout, resetList, resetButton, resetFocus } from 'styles/customProperties';
-import { blue_5 } from 'styles/colors';
+import { blue_5, blue_20 } from 'styles/colors';
 
 export const commentReactionMenus = css`
   ${resetLayout}
@@ -35,3 +35,8 @@ export const commentReactionMenuButton = css`
     text-decoration: underline;
   }
 `
+
+export const isLikeChecked = css`
+  color: ${blue_20};
+  font-weight: 900;
+`;

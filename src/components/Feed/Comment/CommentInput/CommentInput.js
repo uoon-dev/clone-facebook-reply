@@ -57,6 +57,7 @@ const CommentInput = props => {
 
   const likeStatus = (props.likeUsers || []).length > 0 ? 
     <LikeStatus 
+      id={props.id}
       likeUsers={props.likeUsers}
     /> : null  
 
@@ -68,7 +69,6 @@ const CommentInput = props => {
         placeholder={props.parentId ? Comment.CHILD_REPLY : Comment.CREATE_REPLY }
         onKeyPress={onKeyHandler}
         minRows={1}
-        autoFocus={props.isNewPendingComment ? true : false}
         name="commentContent"
         css={styles.textarea}
       /> :

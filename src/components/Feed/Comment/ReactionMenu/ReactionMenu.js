@@ -9,30 +9,29 @@ const ReactionMenu = props => {
   // added likeUser
   const dispatch = useDispatch();
   const activeUser = useSelector(state => state.user.activeUser);
-  const addCommenLikeUser = (commentValue) => { 
-    return dispatch({type: 'ADD_COMMENT_LIKE_USER', payload: {
+  const updateCommenLikeUser = (method) => { 
+    return dispatch({type: 'UPDATE_COMMENT_LIKE_USER', payload: {
       id: props.id,
-      likeUsers: props.likeUsers.concat(activeUser)
+      likeUsers: method === 'add' ? props.likeUsers.concat(activeUser) : 
+        props.likeUsers.filter(likeUser => likeUser.id !== activeUser.id)
     }});
   }
+    
+  const onClickLike = () => 
+    props.isLikeChecked ? updateCommenLikeUser('remove') : updateCommenLikeUser('add');
 
-  const onClickLike = () => {
-    addCommenLikeUser();
-  }
-
-  const onClickReply = () => {
+  const onClickReply = () => 
     props.setTargetCommentInfo({
       targetId: props.id,
       user: props.user,
     });
-  }
-
+  
   return (
     <ul className="CommentReactionMenus" css={styles.commentReactionMenus}>
       <li className="CommentReactionMenu" css={styles.commentReactionMenu}>
         <button 
           className="CommentReactionMenu_Button" 
-          css={styles.commentReactionMenuButton} 
+          css={[styles.commentReactionMenuButton, props.isLikeChecked ? styles.isLikeChecked : '']} 
           onClick={onClickLike}
         >
           좋아요

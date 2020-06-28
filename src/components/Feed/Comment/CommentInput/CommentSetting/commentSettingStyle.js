@@ -1,5 +1,5 @@
 import { css } from '@emotion/core';
-import { gray_5, gray_10, gray_100 } from 'styles/colors';
+import { gray_5, gray_10, black_100 } from 'styles/colors';
 import { resetButton } from 'styles/customProperties';
 
 export const commentSettingButton = css`
@@ -9,7 +9,7 @@ export const commentSettingButton = css`
   color: ${gray_5};
 
   &:hover {
-    color: ${gray_100};    
+    color: ${black_100};    
   }
 
   &.IsCommentSettingClicked {

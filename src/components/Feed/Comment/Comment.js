@@ -30,6 +30,7 @@ const Comment = props => {
       commentContent: commentValue
     }});
   }
+  const isLikeChecked = (props.likeUsers || []).filter(likeUser => likeUser.id === activeUser.id).length;
   const reactionMenu = !props.isNewPendingComment ? 
     <ReactionMenu 
       id={props.id} 
@@ -37,6 +38,7 @@ const Comment = props => {
       parentId={props.parentId}
       setTargetCommentInfo={props.setTargetCommentInfo}
       likeUsers={props.likeUsers}
+      isLikeChecked={isLikeChecked}
     /> : null;
 
   return (
@@ -50,6 +52,7 @@ const Comment = props => {
           targetCommentInfo={props.targetCommentInfo}
           user={props.user}
           likeUsers={props.likeUsers}
+          isLikeChecked={props.isLikeChecked}
           commentContent={props.commentContent}
           createCommentContent={createCommentDispatch}
           updateCommentContent={updateCommentDispatch}
