@@ -5,77 +5,19 @@ import rejectDeepById from 'utils/rejectDeepById';
 import updateDeep from 'utils/updateDeep';
 
 const initialState = {
-  list: [
-    // {
-    //   id: 1234,
-    //   user: {
-    //     id: 0,
-    //     name: 'uoon',
-    //     profileImageUrl: mumrikImage,
-    //   },
-    //   commentContent: 'test',      
-    //   likeUsers: [
-    //     {
-    //       id: 0,
-    //       name: 'uoon',
-    //       profileImageUrl: mumrikImage,
-    //     },
-    //     {
-    //       id: 3,
-    //       name: 'shine',
-    //       profileImageUrl: catImage,
-    //     },        
-    //   ],      
-    //   children: [
-    //     {          
-    //       id: 2345,
-    //       parentId: 1234,
-    //       user: {
-    //         id: 0,
-    //         name: 'uoon',
-    //         profileImageUrl: mumrikImage,
-    //       },
-    //       commentContent: 'test',
-    //       likeUsers: [],
-    //     },
-    //     {          
-    //       id: 3458,
-    //       parentId: 1234,
-    //       user: {
-    //         id: 3,
-    //         name: 'shine',
-    //         profileImageUrl: catImage,
-    //       },
-    //       commentContent: 'test3',
-    //       likeUsers: [],
-    //     }
-    //   ]
-      //   {
-      //     id: 3457,
-      //     parentId: 1234,
-      //     targetCommentInfo: {
-      //       id: 3457,
-      //       user: {
-      //         id: 3,
-      //         name: 'hiden',
-      //         profileImageUrl: mumrik,
-      //       }
-      //     },
-      //     user: {
-      //       id: 0,
-      //       name: 'uoon',
-      //       profileImageUrl: mumrik,
-      //     },
-      //     commentContent: 'test3',
-      //     likeCount: '',
-      //   },        
-      // ] 
-    // },
-  ]
+  list: [],
+  isFetched: false
 };
 
 export default handleActions (
   {
+    [actions.loadComments]: (state, action) => {
+      return ({
+        ...state,
+        list: action.payload.comments,
+        isFetched: true
+      })
+    },
     [actions.createCommentContent]: (state, action) => {
       const createdCommentData = {
         id: action.payload.id,
