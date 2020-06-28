@@ -12,12 +12,12 @@ function* saveCommentSaga() {
     console.error(error);
   }
 }
- 
+
 export default function* watchComment() {
   yield takeEvery([
     actions.CREATE_COMMENT_CONTENT, 
     actions.UPDATE_COMMENT_CONTENT, 
     actions.DELETE_COMMENT_CONTENT, 
-    actions.UPDATE_COMMENT_LIKE_USER
+    actions.UPDATE_COMMENT_LIKE_USER,
   ], saveCommentSaga);
 }

@@ -6,6 +6,7 @@ import updateDeep from 'utils/updateDeep';
 
 const initialState = {
   list: [],
+  newPendingComments: [],
   isFetched: false
 };
 
@@ -17,7 +18,7 @@ export default handleActions (
         list: action.payload.comments,
         isFetched: true
       })
-    },
+    }, 
     [actions.createCommentContent]: (state, action) => {
       const createdCommentData = {
         id: action.payload.id,
@@ -36,6 +37,7 @@ export default handleActions (
           if (comment.id === action.payload.parentId) {
             comment.children.push(createdCommentData);
           }
+          
           return comment;
         }) :
         state.list.concat(createdCommentData)
@@ -83,7 +85,16 @@ export default handleActions (
           list: [...copiedList]
         }
       )      
-    },    
+    },
+    [actions.linkCommentInputs]: (state, action) => {
+      return ({
+        ...state,
+        newPendingComments: state.newPendingComments.concat({
+          ref: action.payload.ref,
+          parentId: action.payload.parentId
+        })
+      })
+    },
   },
   initialState
 )

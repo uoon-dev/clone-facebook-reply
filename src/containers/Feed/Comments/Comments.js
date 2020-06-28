@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import * as styles from './commentsStyle';
 import { v4 as uuidv4 } from 'uuid';
-
 import Comment from 'components/Feed/Comment/Comment';
 
 const Comments = props => {
@@ -18,7 +17,6 @@ const Comments = props => {
       user={activeUser}
       targetCommentInfo={targetCommentInfo}
       isNewPendingComment={true}
-      setTargetCommentInfo={setTargetCommentInfo}
       key={uuidv4()}
     />
   ) : null;
