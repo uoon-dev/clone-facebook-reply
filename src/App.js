@@ -9,17 +9,6 @@ import localStorageManager from 'utils/localStorageManager';
 import Layout from 'hocs/Layout/Layout';
 import CommentsWrapper from 'containers/Feed/Comments/CommentsWrapper';
 
-/**
- * Todo
- * UX 개선사항
- * 1. 자기 코멘트만 수정/삭제 가능하게 구현
- * 2. 대댓글 가리기 - 보여주기
- * 3. 코멘트 입력창 브레이크 라인 구현
- * 4. 코멘트 입력창 오토 포커싱
- * 5. 수정 클릭 시 나머지 입력창 수정 취소 시키기
- * 6. 수정 취소 기능
- */
-
 const App = () => {
   const dispatch = useDispatch();  
   const isFetched = useSelector(state => state.comment.isFetched);

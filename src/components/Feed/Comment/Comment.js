@@ -11,51 +11,67 @@ import ReactionMenu from './ReactionMenu/ReactionMenu';
 import * as styles from './commentStyle';
 
 const Comment = props => {
+  const { 
+    commentContent,
+    targetCommentInfo,
+    setTargetCommentInfo, 
+    parentId,
+    id,
+    likeUsers,
+    user,
+    isNewPendingComment
+  } = props;
+
   const activeUser = useSelector(state => state.user.activeUser);
   const dispatch = useDispatch();
   const createCommentDispatch = (commentValue) => { 
-    const targetCommentInfo = props.targetCommentInfo
-    props.setTargetCommentInfo({});
+    const copiedTargetCommentInfo = targetCommentInfo;
+    if (setTargetCommentInfo) {
+      setTargetCommentInfo({});
+    }
     return dispatch({type: 'CREATE_COMMENT_CONTENT', payload: {
       id: uuidv4(),
-      parentId: props.parentId,
+      parentId,
       user: activeUser,
       commentContent: commentValue,
       likeCount: 0,
       children: [],
-      targetCommentInfo
+      targetCommentInfo: copiedTargetCommentInfo,
     }})
   };
   const updateCommentDispatch = (commentValue) => { 
     return dispatch({type: 'UPDATE_COMMENT_CONTENT', payload: {
-      id: props.id,
+      id: id,
       commentContent: commentValue
     }});
   }
-  const isLikeChecked = (props.likeUsers || []).filter(likeUser => likeUser.id === activeUser.id).length;
-  const reactionMenu = !props.isNewPendingComment ? 
+  const isLikeChecked = (likeUsers || []).filter(likeUser => likeUser.id === activeUser.id).length;
+  const reactionMenu = !isNewPendingComment ? 
     <ReactionMenu 
-      id={props.id} 
-      user={props.user}
-      parentId={props.parentId}
-      setTargetCommentInfo={props.setTargetCommentInfo}
-      likeUsers={props.likeUsers}
+      id={id} 
+      user={user}
+      parentId={parentId}
+      setTargetCommentInfo={setTargetCommentInfo}
+      likeUsers={likeUsers}
       isLikeChecked={isLikeChecked}
     /> : null;
 
   return (
-    <div className={`CommentItem ${!props.isNewPendingComment ? 'CreatedComment' : ''}`} css={styles.commentItem}>
-      <Profile profileImageUrl={props.user.profileImageUrl} isChildComment={props.parentId} />
+    <div       
+      className={`CommentItem ${!isNewPendingComment ? 'CreatedComment' : ''}`} 
+      css={styles.commentItem}
+    >
+      <Profile profileImageUrl={user.profileImageUrl} isChildComment={parentId} />
       <div css={styles.commentContent}>
         <CommentInput 
-          id={props.id}
-          isNewPendingComment={props.isNewPendingComment}
-          parentId={props.parentId}
-          targetCommentInfo={props.targetCommentInfo}
-          user={props.user}
-          likeUsers={props.likeUsers}
-          isLikeChecked={props.isLikeChecked}
-          commentContent={props.commentContent}
+          id={id}
+          isNewPendingComment={isNewPendingComment}
+          parentId={parentId}
+          targetCommentInfo={targetCommentInfo}
+          user={user}
+          likeUsers={likeUsers}
+          isLikeChecked={isLikeChecked}
+          commentContent={commentContent}
           createCommentContent={createCommentDispatch}
           updateCommentContent={updateCommentDispatch}
         />
@@ -63,6 +79,6 @@ const Comment = props => {
       </div>
     </div>
   )
-}
+};
 
 export default Comment;

@@ -3,7 +3,8 @@ import { gray_5 } from 'styles/colors';
 import { resetButton } from 'styles/customProperties';
 
 export const layout = css`
-  margin: 20px 200px;
+  margin: 40px auto;
+  max-width: 500px;
 `;
 
 export const changeUserButton = css`

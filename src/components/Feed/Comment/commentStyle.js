@@ -28,4 +28,9 @@ export const commentItem = css`
 
 export const commentContent = css`
   position: relative;
+  width: 100%;
+
+  textarea {
+    width: 100%;
+  }
 `

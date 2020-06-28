@@ -23,6 +23,7 @@ export const textarea = css`
   font-weight: normal;
   font-size: 16px;
   color: ${gray_20};
+  word-break: break-all;
 
   &::placeholder {
     font-size: 13px;
