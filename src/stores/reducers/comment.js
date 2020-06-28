@@ -89,7 +89,10 @@ export default handleActions (
     [actions.linkCommentInputs]: (state, action) => {
       return ({
         ...state,
-        newPendingComments: state.newPendingComments.concat({
+        newPendingComments: 
+          state.newPendingComments
+          .filter(newPendingComment => newPendingComment.parentId !== action.payload.parentId)
+          .concat({
           ref: action.payload.ref,
           parentId: action.payload.parentId
         })
