@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useState, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import CommentSetting from './CommentSetting/CommentSetting';
@@ -11,16 +12,21 @@ import { Comment } from 'constants/text';
 
 const CommentInput = props => {
   const [isEditing, setIsEditing] = useState(false);
+  const activeUser = useSelector(state => state.user.activeUser);
   const textarea = useRef();
+  const targetCommentUser = (props.targetCommentInfo && props.targetCommentInfo.user) ? props.targetCommentInfo.user : {};
+  const targetUserName = props.user.id !== targetCommentUser.id ? targetCommentUser.name : '';
+  const canEditable = props.user.id === activeUser.id;
+  let userNames;
   
-  useEffect(() => {
-    const commentTextArea = textarea.current;
-    if (commentTextArea) {
-      const commentLength = commentTextArea.value.length;
-      commentTextArea.focus();
-      commentTextArea.setSelectionRange(commentLength, commentLength)
-    }
-  }, [isEditing])
+  if (props.id) {
+    userNames = (
+      <span>
+        <a href="/" css={styles.userName}>{props.user.name}</a>
+        {targetUserName ? <a href="/" css={styles.userName}>{targetUserName}</a> : ''}
+      </span>
+    )
+  }
 
   const onKeyHandler = (e) => { 
     const isEnterPressed = e.key === 'Enter';
@@ -39,18 +45,14 @@ const CommentInput = props => {
     }
   }
 
-  const targetCommentUser = (props.targetCommentInfo && props.targetCommentInfo.user) ? props.targetCommentInfo.user : {};
-  const targetUserName = props.user.id !== targetCommentUser.id ? targetCommentUser.name : '';
-  let userNames;
-  
-  if (props.id) {
-    userNames = (
-      <span>
-        <a href="/" css={styles.userName}>{props.user.name}</a>
-        {targetUserName ? <a href="/" css={styles.userName}>{targetUserName}</a> : ''}
-      </span>
-    )
-  }
+  useEffect(() => {
+    const commentTextArea = textarea.current;
+    if (commentTextArea) {
+      const commentLength = commentTextArea.value.length;
+      commentTextArea.focus();
+      commentTextArea.setSelectionRange(commentLength, commentLength)
+    }
+  }, [isEditing])  
 
   const likeStatus = (props.likeUsers || []).length > 0 ? 
     <LikeStatus 
@@ -74,10 +76,13 @@ const CommentInput = props => {
           {userNames} {props.commentContent}
           {likeStatus}
         </div>
-        <CommentSetting 
-          setIsEditing={setIsEditing} 
-          commentId={props.id}
-        />
+        {
+          canEditable ? 
+          <CommentSetting 
+            setIsEditing={setIsEditing} 
+            commentId={props.id}
+          /> : ''
+        }
       </div>
   )
   
