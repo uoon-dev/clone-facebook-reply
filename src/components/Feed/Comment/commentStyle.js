@@ -25,3 +25,7 @@ export const commentItem = css`
     }
   }  
 `;
+
+export const commentContent = css`
+  position: relative;
+`

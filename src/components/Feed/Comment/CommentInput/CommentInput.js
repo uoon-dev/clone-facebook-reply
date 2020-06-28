@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import CommentSetting from './CommentSetting';
+import LikeStatus from './LikeStatus/LikeStatus';
 import * as styles from './commentInputStyle';
 import { Comment } from 'constants/text';
 
@@ -51,6 +52,11 @@ const CommentInput = props => {
     )
   }
 
+  const likeStatus = (props.likeUsers || []).length > 0 ? 
+    <LikeStatus 
+      likeUsers={props.likeUsers}
+    /> : null  
+
   const commentInputBody = (
     isEditing || props.isNewPendingComment ? 
       <TextareaAutosize
@@ -64,10 +70,14 @@ const CommentInput = props => {
         css={styles.textarea}
       /> :
       <div className="CommentStaticInput" css={styles.commentInput}>
-        <div css={styles.textarea}>
+        <div css={[styles.textarea, likeStatus ? styles.hasLikeStatus : '']}>
           {userNames} {props.commentContent}
+          {likeStatus}
         </div>
-        <CommentSetting setIsEditing={setIsEditing} commentId={props.id}/>      
+        <CommentSetting 
+          setIsEditing={setIsEditing} 
+          commentId={props.id}
+        />
       </div>
   )
   

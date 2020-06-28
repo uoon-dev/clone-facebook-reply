@@ -23,7 +23,7 @@ const CommentSetting = props => {
 
   const uuid = uuidv4();
   return (
-    <div>
+    <div className="CommentSetting">
       <button
         className={`CommentSettingButton ${isCommentSettingClicked ? 'IsCommentSettingClicked' : ''}`} 
         css={styles.commentSettingButton} 

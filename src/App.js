@@ -18,6 +18,7 @@ import CommentsWrapper from 'containers/Feed/Comments/CommentsWrapper';
  * 
  * 기능 개발
  * 1. 좋아요 기능
+ * 2. localStorage 저장
  */
 
 const App = () => {

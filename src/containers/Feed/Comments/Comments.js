@@ -30,7 +30,7 @@ const Comments = props => {
           parentId={commentStatus.parentId}
           user={commentStatus.user}
           commentContent={commentStatus.commentContent}
-          likeCount={commentStatus.likeCount}
+          likeUsers={commentStatus.likeUsers}
           setTargetCommentInfo={setTargetCommentInfo}
           targetCommentInfo={commentStatus.targetCommentInfo}
           key={uuidv4()}

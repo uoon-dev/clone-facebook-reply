@@ -22,7 +22,18 @@ const initialState = {
         profileImageUrl: mumrikImage,
       },
       commentContent: 'test',
-      likeCount: '',
+      likeUsers: [
+        {
+          id: 0,
+          name: 'uoon',
+          profileImageUrl: mumrikImage,
+        },
+        {
+          id: 3,
+          name: 'shine',
+          profileImageUrl: catImage,
+        },        
+      ],
       children: [
         {          
           id: 2345,
@@ -33,7 +44,7 @@ const initialState = {
             profileImageUrl: mumrikImage,
           },
           commentContent: 'test',
-          likeCount: '',
+          likeUsers: [],
         },
         {          
           id: 3458,
@@ -44,7 +55,7 @@ const initialState = {
             profileImageUrl: catImage,
           },
           commentContent: 'test3',
-          likeCount: '',
+          likeUsers: [],
         }
       ]
       //   {
@@ -79,8 +90,8 @@ export default handleActions (
         parentId: action.payload.parentId,
         user: action.payload.user,
         commentContent: action.payload.commentContent,
-        likeCount: action.payload.likeCount,
         targetCommentInfo: action.payload.targetCommentInfo,
+        likeUsers: [],
         children: []
       }
       return ({

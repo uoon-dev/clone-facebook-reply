@@ -1,13 +1,13 @@
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid'; 
 
 import Profile from './Profile/Profile';
 import CommentInput from './CommentInput/CommentInput';
 import ReactionMenu from './ReactionMenu/ReactionMenu';
+
 import * as styles from './commentStyle';
 
 const Comment = props => {
@@ -41,13 +41,14 @@ const Comment = props => {
   return (
     <div className={`CommentItem ${!props.isNewPendingComment ? 'CreatedComment' : ''}`} css={styles.commentItem}>
       <Profile profileImageUrl={props.user.profileImageUrl} isChildComment={props.parentId} />
-      <div>
+      <div css={styles.commentContent}>
         <CommentInput 
           id={props.id}
           isNewPendingComment={props.isNewPendingComment}
           parentId={props.parentId}
           targetCommentInfo={props.targetCommentInfo}
           user={props.user}
+          likeUsers={props.likeUsers}
           commentContent={props.commentContent}
           createCommentContent={createCommentDispatch}
           updateCommentContent={updateCommentDispatch}
