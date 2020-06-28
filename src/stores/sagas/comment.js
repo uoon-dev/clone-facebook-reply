@@ -1,16 +1,23 @@
 ///// SearchSaga.js
-import { put, call, takeEvery } from "redux-saga/effects";
+import { call, takeEvery, select } from "redux-saga/effects";
 import * as actions from "../actions/comment";
- 
-function* createCommentSaga(data) {
+import localStorageManager from 'utils/localStorageManager';
+
+function* saveCommentSaga() {
   try {
-    yield call(localStorage.setItem('comments', JSON.stringify(data)));
-  } 
+    const state = yield select();
+    yield call(localStorageManager.save, 'comments', state.comment.list);
+  }
   catch (error) {
     console.error(error);
-    }
+  }
 }
  
 export default function* watchComment() {
-  yield takeEvery(actions.CREATE_COMMENT_CONTENT, createCommentSaga);
+  yield takeEvery([
+    actions.CREATE_COMMENT_CONTENT, 
+    actions.UPDATE_COMMENT_CONTENT, 
+    actions.DELETE_COMMENT_CONTENT, 
+    actions.UPDATE_COMMENT_LIKE_USER
+  ], saveCommentSaga);
 }

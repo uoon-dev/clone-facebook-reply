@@ -2,16 +2,15 @@ import { handleActions } from 'redux-actions';
 import * as actions from '../actions/user';
 import mumrikImage from "images/mumrik.png";
 import catImage from "images/cat.png";
-import { v4 as uuidv4 } from 'uuid'
 
 const testUser1 =  {
-  id: uuidv4(),
+  id: 123456789,
   name: 'uoon',
   profileImageUrl: mumrikImage,
 }
 
 const testUser2 = {
-  id: uuidv4(),
+  id: 101112134,
   name: 'shine',
   profileImageUrl: catImage,
 }
