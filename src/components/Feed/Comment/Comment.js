@@ -14,6 +14,8 @@ const Comment = props => {
   const activeUser = useSelector(state => state.user.activeUser);
   const dispatch = useDispatch();
   const createCommentDispatch = (commentValue) => { 
+    const targetCommentInfo = props.targetCommentInfo
+    props.setTargetCommentInfo({});
     return dispatch({type: 'CREATE_COMMENT_CONTENT', payload: {
       id: uuidv4(),
       parentId: props.parentId,
@@ -21,7 +23,7 @@ const Comment = props => {
       commentContent: commentValue,
       likeCount: 0,
       children: [],
-      targetCommentInfo: props.targetCommentInfo
+      targetCommentInfo
     }})
   };
   const updateCommentDispatch = (commentValue) => { 

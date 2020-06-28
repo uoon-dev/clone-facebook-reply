@@ -2,8 +2,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-// import { useForm } from 'react-hook-form';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import CommentSetting from './CommentSetting/CommentSetting';
@@ -14,7 +12,6 @@ import { Comment } from 'constants/text';
 const CommentInput = props => {
   const [isEditing, setIsEditing] = useState(false);
   const textarea = useRef();
-  const activeUser = useSelector(state => state.user.activeUser);
   
   useEffect(() => {
     const commentTextArea = textarea.current;
@@ -43,7 +40,7 @@ const CommentInput = props => {
   }
 
   const targetCommentUser = (props.targetCommentInfo && props.targetCommentInfo.user) ? props.targetCommentInfo.user : {};
-  const targetUserName = activeUser.id !== targetCommentUser.id ? targetCommentUser.name : '';
+  const targetUserName = props.user.id !== targetCommentUser.id ? targetCommentUser.name : '';
   let userNames;
   
   if (props.id) {

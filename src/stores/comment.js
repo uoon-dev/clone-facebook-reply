@@ -1,6 +1,4 @@
 import { createAction, handleActions } from 'redux-actions';
-import mumrikImage from "images/mumrik.png";
-import catImage from "images/cat.png";
 import rejectDeepById from 'utils/rejectDeepById';
 import updateDeep from 'utils/updateDeep';
 
@@ -19,50 +17,50 @@ export const updateCommentLikeUser = createAction(UPDATE_COMMENT_LIKE_USER, data
 
 const initialState = {
   list: [
-    {
-      id: 1234,
-      user: {
-        id: 0,
-        name: 'uoon',
-        profileImageUrl: mumrikImage,
-      },
-      commentContent: 'test',      
-      likeUsers: [
-        {
-          id: 0,
-          name: 'uoon',
-          profileImageUrl: mumrikImage,
-        },
-        {
-          id: 3,
-          name: 'shine',
-          profileImageUrl: catImage,
-        },        
-      ],      
-      children: [
-        {          
-          id: 2345,
-          parentId: 1234,
-          user: {
-            id: 0,
-            name: 'uoon',
-            profileImageUrl: mumrikImage,
-          },
-          commentContent: 'test',
-          likeUsers: [],
-        },
-        {          
-          id: 3458,
-          parentId: 1234,
-          user: {
-            id: 3,
-            name: 'shine',
-            profileImageUrl: catImage,
-          },
-          commentContent: 'test3',
-          likeUsers: [],
-        }
-      ]
+    // {
+    //   id: 1234,
+    //   user: {
+    //     id: 0,
+    //     name: 'uoon',
+    //     profileImageUrl: mumrikImage,
+    //   },
+    //   commentContent: 'test',      
+    //   likeUsers: [
+    //     {
+    //       id: 0,
+    //       name: 'uoon',
+    //       profileImageUrl: mumrikImage,
+    //     },
+    //     {
+    //       id: 3,
+    //       name: 'shine',
+    //       profileImageUrl: catImage,
+    //     },        
+    //   ],      
+    //   children: [
+    //     {          
+    //       id: 2345,
+    //       parentId: 1234,
+    //       user: {
+    //         id: 0,
+    //         name: 'uoon',
+    //         profileImageUrl: mumrikImage,
+    //       },
+    //       commentContent: 'test',
+    //       likeUsers: [],
+    //     },
+    //     {          
+    //       id: 3458,
+    //       parentId: 1234,
+    //       user: {
+    //         id: 3,
+    //         name: 'shine',
+    //         profileImageUrl: catImage,
+    //       },
+    //       commentContent: 'test3',
+    //       likeUsers: [],
+    //     }
+    //   ]
       //   {
       //     id: 3457,
       //     parentId: 1234,
@@ -83,7 +81,7 @@ const initialState = {
       //     likeCount: '',
       //   },        
       // ] 
-    },
+    // },
   ]
 };
 

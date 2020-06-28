@@ -18,6 +18,7 @@ const Comments = props => {
       user={activeUser}
       targetCommentInfo={targetCommentInfo}
       isNewPendingComment={true}
+      setTargetCommentInfo={setTargetCommentInfo}
       key={uuidv4()}
     />
   ) : null;
@@ -46,6 +47,7 @@ const Comments = props => {
             parentId={commentStatus.parentId}
             user={activeUser}  
             targetCommentInfo={targetCommentInfo}
+            setTargetCommentInfo={setTargetCommentInfo}
             isNewPendingComment={true}
             key={uuidv4()}
           /> : null

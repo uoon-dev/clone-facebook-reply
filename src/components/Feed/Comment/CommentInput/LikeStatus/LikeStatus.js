@@ -16,7 +16,7 @@ const likeStatus = props => {
       className="LikeStatus" 
       css={styles.likeStatus} 
       data-tip
-      data-for={`likeUserList_${props.id}`}
+      data-for={`likeUserList_${id}`}
     >
       <img 
         src={likeIconImage} 
@@ -26,7 +26,7 @@ const likeStatus = props => {
       <span>{likeUsers.length}</span>
       <ReactTooltip 
         place="top"
-        id={`likeUserList_${props.id}`}
+        id={`likeUserList_${id}`}
         effect="solid"
         backgroundColor={black_100}
       > 
