@@ -1,5 +1,4 @@
 import { css } from '@emotion/core';
-import { blue_10 } from 'styles/colors'
 
 export const commentItem = css`
   display: flex;
