@@ -17,6 +17,7 @@ const ReactionMenu = props => {
   const dispatch = useDispatch();
   const activeUser = useSelector(state => state.user.activeUser);
   const newPendingComments = useSelector(state => state.comment.newPendingComments);
+  
   const updateCommenLikeUser = (method) => { 
     return dispatch({type: 'UPDATE_COMMENT_LIKE_USER', payload: {
       id,

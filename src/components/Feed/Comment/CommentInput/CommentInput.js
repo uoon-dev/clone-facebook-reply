@@ -4,6 +4,7 @@ import { jsx } from '@emotion/core';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
+import { v4 as uuidv4 } from 'uuid'; 
 
 import CommentSetting from './CommentSetting/CommentSetting';
 import LikeStatus from './LikeStatus/LikeStatus';
@@ -19,33 +20,36 @@ const CommentInput = props => {
     likeUsers,
     user,
     isNewPendingComment,
-    createCommentContent,
-    updateCommentContent
+    setTargetCommentInfo
   } = props;
 
   const [isEditing, setIsEditing] = useState(false);
   const activeUser = useSelector(state => state.user.activeUser);
   const textarea = useRef();
   const dispatch = useDispatch();
-  const linkCommentInputs = useCallback(() => {
-    return dispatch({type: 'LINK_COMMENT_INPUTS', payload: {
-      ref: textarea.current,
-      parentId,
-    }})
-  }, [dispatch, parentId]);  
   const targetCommentUser = (targetCommentInfo && targetCommentInfo.user) ? targetCommentInfo.user : {};
   const targetUserName = user.id !== targetCommentUser.id ? targetCommentUser.name : '';
   const canEditable = user.id === activeUser.id;
-  let userNames;
-  
-  if (id) {
-    userNames = (
-      <span>
-        <a href="/" css={styles.userName}>{user.name}</a>
-        {targetUserName ? <a href="/" css={styles.userName}>{targetUserName}</a> : ''}
-      </span>
-    )
-  }
+
+  const createCommentDispatch = () => dispatch({type: 'CREATE_COMMENT_CONTENT', payload: {
+      id: uuidv4(),
+      parentId,
+      user: activeUser,
+      commentContent: textarea.current.value,
+      likeCount: 0,
+      children: [],
+      targetCommentInfo,
+    }});
+
+  const updateCommentDispatch = () => dispatch({type: 'UPDATE_COMMENT_CONTENT', payload: {
+      id: id,
+      commentContent: textarea.current.value
+    }});
+
+  const linkCommentInputs = useCallback(() => dispatch({type: 'LINK_COMMENT_INPUTS', payload: {
+      ref: textarea.current,
+      parentId,
+    }}), [dispatch, parentId]);
 
   const onKeyPressHandler = (e) => { 
     const isEnterPressed = e.key === 'Enter';
@@ -54,11 +58,14 @@ const CommentInput = props => {
     if (isEnterPressed && !isShiftPressed) {
       e.preventDefault();
       const value = e.target.value;
-      if (e.target.value.length === 0) return;
+      if (value.length === 0) return;
       if (isNewPendingComment) {
-        createCommentContent(value);
+        createCommentDispatch();
+        if (setTargetCommentInfo) {
+          setTargetCommentInfo({});
+        }
       } else {
-        updateCommentContent(value);
+        updateCommentDispatch();
         setIsEditing(false);
       }
     }
@@ -74,44 +81,48 @@ const CommentInput = props => {
     if (isNewPendingComment) {
       linkCommentInputs();
     }
-  }, [isEditing, isNewPendingComment, linkCommentInputs])  
+  }, [isEditing, isNewPendingComment, linkCommentInputs]);
+
+  const userNames = id ? (
+    <span>
+      <a href="/" css={styles.userName}>{user.name}</a>
+      {targetUserName ? <a href="/" css={styles.userName}>{targetUserName}</a> : ''}
+    </span>
+  ) : null;  
 
   const likeStatus = (likeUsers || []).length > 0 ? 
     <LikeStatus 
       id={id}
       likeUsers={likeUsers}
-    /> : null  
+    /> : null;
 
-  const commentInputBody = (
-    isEditing || isNewPendingComment ? 
-      <TextareaAutosize
-        ref={textarea}
-        defaultValue={commentContent} 
-        placeholder={parentId ? Comment.CHILD_REPLY : Comment.CREATE_REPLY }
-        onKeyPress={onKeyPressHandler}
-        minRows={1}
-        cols={200}
-        name="commentContent"
-        css={styles.textarea}
-      /> :
-      <div className="CommentStaticInput" css={styles.commentInput}>
-        <div css={[styles.textarea, likeStatus ? styles.hasLikeStatus : '']}>
-          {userNames} {commentContent}
-          {likeStatus}
-        </div>
-        {
-          canEditable ? 
-          <CommentSetting 
-            setIsEditing={setIsEditing} 
-            commentId={id}
-          /> : ''
-        }
-      </div>
-  )
-  
   return (
     <div>
-        {commentInputBody}      
+      {isEditing || isNewPendingComment ? 
+        <TextareaAutosize
+          ref={textarea}
+          defaultValue={commentContent} 
+          placeholder={parentId ? Comment.CHILD_REPLY : Comment.CREATE_REPLY }
+          onKeyPress={onKeyPressHandler}
+          minRows={1}
+          cols={200}
+          name="commentContent"
+          css={[styles.commentBody, styles.textArea]}
+        /> : 
+        <div className="CommentStaticBody" css={styles.commentStaticBodyWrapper}>
+          <div className="CommentLikeStatus_Wrapper" css={[styles.commentBody, likeStatus ? styles.hasLikeStatus : '']}>
+            {userNames} {commentContent}
+            {likeStatus}
+          </div>
+          {
+            canEditable ? 
+            <CommentSetting 
+              setIsEditing={setIsEditing} 
+              commentId={id}
+            /> : null
+          }
+        </div>
+      }
     </div>
   )
 }

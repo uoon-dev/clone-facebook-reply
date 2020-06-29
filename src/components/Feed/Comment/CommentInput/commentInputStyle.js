@@ -2,13 +2,7 @@ import { css } from '@emotion/core';
 import { blue_5, gray_5, gray_20 } from 'styles/colors';
 import { resetFocus, resetLink } from 'styles/customProperties';
 
-export const commentInput = css`
-  position: relative;
-  display: flex;
-  align-items: center;
-`
-
-export const textarea = css`
+export const commentBody = css`
   ${resetFocus}
   position: relative;
   padding: 8px 12px;
@@ -18,13 +12,15 @@ export const textarea = css`
   border: 1px solid #ccd0d5;
   background-color: #f2f3f5;
   line-height: 16px;
-  resize: none;
   font-family: Roboto, Sans-serif;
   font-weight: normal;
   font-size: 16px;
   color: ${gray_20};
   word-break: break-all;
+`;
 
+export const textArea = css`
+  resize: none;
   &::placeholder {
     font-size: 13px;
   }
@@ -37,6 +33,12 @@ export const textarea = css`
     }
   }
 `;
+
+export const commentStaticBodyWrapper = css`
+  position: relative;
+  display: flex;
+  align-items: center;
+`
 
 export const userName = css`
   ${resetLink}
