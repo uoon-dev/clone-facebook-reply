@@ -1,9 +1,9 @@
 # Project: Clone Facebook Reply 
 ## Specs
-framework/library: react
-data flow: react-hooks, react-redux
-middleware: redux-saga,
-css: @emotion/core
+framework/library: react <br/>
+data flow: react-hooks, react-redux <br/>
+middleware: redux-saga <br/>
+css: @emotion/core <br/>
 etc: react-textarea-autosize, react-tooltip...
 
 ## demo
