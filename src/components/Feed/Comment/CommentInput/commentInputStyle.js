@@ -17,6 +17,10 @@ export const commentBody = css`
   font-size: 16px;
   color: ${gray_20};
   word-break: break-all;
+
+  + .CommentSetting_Wrapper {
+    margin-left: 6px;
+  }
 `;
 
 export const textArea = css`
@@ -55,7 +59,7 @@ export const userName = css`
 `;
 
 export const hasLikeStatus = css`
-  + .CommentSetting {
-    margin-left: 18px;
+  + .CommentSetting_Wrapper {
+    margin-left: 24px;
   }
-`
+`;

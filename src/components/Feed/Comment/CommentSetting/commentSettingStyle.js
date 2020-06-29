@@ -1,11 +1,16 @@
 import { css } from '@emotion/core';
-import { gray_5, gray_10, black_100 } from 'styles/colors';
+import { gray_5, gray_10, black_100, blue_5 } from 'styles/colors';
 import { resetButton } from 'styles/customProperties';
+
+export const commentSettingWrapper = css`
+  display: inline-block;
+  height: 100%;
+`;
 
 export const commentSettingButton = css`
   ${resetButton}
-  visibility: hidden;
-  margin-left: 6px;
+  visibility: hidden;  
+  height: 100%;
   color: ${gray_5};
 
   &:hover {
@@ -15,6 +20,13 @@ export const commentSettingButton = css`
   &.IsCommentSettingClicked {
     visibility: visible;        
   }
+`;
+
+export const commentSettingButtonText = css`
+  display: inline-block;
+  margin-top: 2px;  
+  color: ${blue_5};
+  font-size: 12px;  
 `;
 
 export const commentSettingClickTooltip = css`

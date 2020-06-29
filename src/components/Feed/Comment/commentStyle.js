@@ -1,4 +1,5 @@
 import { css } from '@emotion/core';
+import { TABLET_MAX_WIDTH } from 'constants/screenSize';
 
 export const commentItem = css`
   display: flex;
@@ -7,10 +8,12 @@ export const commentItem = css`
   position: relative;
 
   &:hover {
-    .CommentSettingButton {
-      visibility: visible;
+    @media screen and (min-width: ${TABLET_MAX_WIDTH + 1}px) {
+      .CommentSettingButton {
+        visibility: visible;
+      }
     }
-  }  
+  }
 `;
 
 export const commentContent = css`
@@ -20,4 +23,8 @@ export const commentContent = css`
   textarea {
     width: 100%;
   }
-`
+`;
+
+export const commentSettingInPc = css`
+  visibility: hidden;
+`;

@@ -1,6 +1,7 @@
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Profile from './Profile/Profile';
@@ -22,7 +23,8 @@ const Comment = props => {
   } = props;
 
   const activeUser = useSelector(state => state.user.activeUser);
-
+  const [isEditing, setIsEditing] = useState(false);
+  
   const isLikeChecked = (likeUsers || []).filter(likeUser => likeUser.id === activeUser.id).length;
   const reactionMenu = !isNewPendingComment ? 
     <ReactionMenu 
@@ -32,6 +34,7 @@ const Comment = props => {
       setTargetCommentInfo={setTargetCommentInfo}
       likeUsers={likeUsers}
       isLikeChecked={isLikeChecked}
+      setIsEditing={setIsEditing}
     /> : null;
 
   return (
@@ -51,6 +54,8 @@ const Comment = props => {
           isLikeChecked={isLikeChecked}
           commentContent={commentContent}
           setTargetCommentInfo={setTargetCommentInfo}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
         />
         {reactionMenu}
       </div>

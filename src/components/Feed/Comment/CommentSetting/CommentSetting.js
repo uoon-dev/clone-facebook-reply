@@ -15,6 +15,7 @@ import * as styles from './commentSettingStyle';
 import { white_0 } from 'styles/colors';
 
 const CommentSetting = props => {
+  const { icon } = props;
   const [isCommentSettingClicked, setIsCommentSettingClicked] = useState(false);
   const dispatch = useDispatch();
   const deleteCommentDispatch = () => dispatch({type: 'DELETE_COMMENT_CONTENT', payload: {
@@ -23,19 +24,21 @@ const CommentSetting = props => {
 
   const uuid = uuidv4();
   return (
-    <div className="CommentSetting">
+    <div className="CommentSetting_Wrapper" css={styles.commentSettingWrapper}>
       <button
         className={`CommentSettingButton ${isCommentSettingClicked ? 'IsCommentSettingClicked' : ''}`} 
         css={styles.commentSettingButton} 
         data-tip
         data-for={`commentSettingHoverTooltip_${uuid}`}
       >
-        <FaEllipsisH
+        <span
+          css={styles.commentSettingButtonText}
           data-tip
           data-event="click"
-          data-for={`commentSettingClickTooltip_${uuid}`}
+          data-for={`commentSettingClickTooltip_${uuid}`}        
         >
-        </FaEllipsisH>
+          {icon ? <FaEllipsisH/> : '더보기'}
+        </span>
       </button>
       <ReactTooltip 
         id={`commentSettingHoverTooltip_${uuid}`}

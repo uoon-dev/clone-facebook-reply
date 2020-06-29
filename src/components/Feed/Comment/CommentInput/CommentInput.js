@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 import { v4 as uuidv4 } from 'uuid'; 
 
-import CommentSetting from './CommentSetting/CommentSetting';
+import CommentSetting from '../CommentSetting/CommentSetting';
 import LikeStatus from './LikeStatus/LikeStatus';
 import * as styles from './commentInputStyle';
 import { Comment } from 'constants/text';
@@ -20,10 +20,12 @@ const CommentInput = props => {
     likeUsers,
     user,
     isNewPendingComment,
-    setTargetCommentInfo
+    setTargetCommentInfo,
+    isEditing,
+    setIsEditing
   } = props;
 
-  const [isEditing, setIsEditing] = useState(false);
+  
   const activeUser = useSelector(state => state.user.activeUser);
   const textarea = useRef();
   const dispatch = useDispatch();
@@ -116,7 +118,8 @@ const CommentInput = props => {
           </div>
           {
             canEditable ? 
-            <CommentSetting 
+            <CommentSetting
+              icon={true}
               setIsEditing={setIsEditing} 
               commentId={id}
             /> : null

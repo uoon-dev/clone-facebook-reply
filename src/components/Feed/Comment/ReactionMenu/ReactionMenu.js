@@ -3,6 +3,7 @@ import { jsx } from '@emotion/core';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as styles from './reactionMenuStyle';
+import CommentSetting from '../CommentSetting/CommentSetting';
 
 const ReactionMenu = props => {
   const { 
@@ -11,11 +12,13 @@ const ReactionMenu = props => {
     parentId,
     likeUsers,
     user,
-    isLikeChecked
+    isLikeChecked,
+    setIsEditing
   } = props;  
   const menuGroupRef = useRef();
   const dispatch = useDispatch();
   const activeUser = useSelector(state => state.user.activeUser);
+  const canEditable = user.id === activeUser.id;
   const newPendingComments = useSelector(state => state.comment.newPendingComments);
   
   const updateCommenLikeUser = (method) => { 
@@ -64,6 +67,16 @@ const ReactionMenu = props => {
           답글 달기
         </button>
       </li>
+      {
+        canEditable ? 
+        <li className="CommentReactionMenu" css={[styles.commentReactionMenu, styles.commentSettingInMobile ]}>
+          <CommentSetting
+            setIsEditing={setIsEditing} 
+            commentId={id}
+          />
+        </li> : 
+        null
+      }
     </ul>
   )
 }
