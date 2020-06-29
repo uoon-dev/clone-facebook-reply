@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/clone-facebook-reply/static/css/main.d78e21ce.chunk.css",
-    "main.js": "/clone-facebook-reply/static/js/main.afa0b301.chunk.js",
-    "main.js.map": "/clone-facebook-reply/static/js/main.afa0b301.chunk.js.map",
+    "main.js": "/clone-facebook-reply/static/js/main.17f780c3.chunk.js",
+    "main.js.map": "/clone-facebook-reply/static/js/main.17f780c3.chunk.js.map",
     "runtime-main.js": "/clone-facebook-reply/static/js/runtime-main.b75a6a47.js",
     "runtime-main.js.map": "/clone-facebook-reply/static/js/runtime-main.b75a6a47.js.map",
-    "static/js/2.06e2514f.chunk.js": "/clone-facebook-reply/static/js/2.06e2514f.chunk.js",
-    "static/js/2.06e2514f.chunk.js.map": "/clone-facebook-reply/static/js/2.06e2514f.chunk.js.map",
+    "static/js/2.5d2ca100.chunk.js": "/clone-facebook-reply/static/js/2.5d2ca100.chunk.js",
+    "static/js/2.5d2ca100.chunk.js.map": "/clone-facebook-reply/static/js/2.5d2ca100.chunk.js.map",
     "index.html": "/clone-facebook-reply/index.html",
-    "precache-manifest.4642584ed467f64a094fb5e8cfd980b4.js": "/clone-facebook-reply/precache-manifest.4642584ed467f64a094fb5e8cfd980b4.js",
+    "precache-manifest.030482af42f57673b457c9941cec74cb.js": "/clone-facebook-reply/precache-manifest.030482af42f57673b457c9941cec74cb.js",
     "service-worker.js": "/clone-facebook-reply/service-worker.js",
     "static/css/main.d78e21ce.chunk.css.map": "/clone-facebook-reply/static/css/main.d78e21ce.chunk.css.map",
-    "static/js/2.06e2514f.chunk.js.LICENSE.txt": "/clone-facebook-reply/static/js/2.06e2514f.chunk.js.LICENSE.txt"
+    "static/js/2.5d2ca100.chunk.js.LICENSE.txt": "/clone-facebook-reply/static/js/2.5d2ca100.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b75a6a47.js",
-    "static/js/2.06e2514f.chunk.js",
+    "static/js/2.5d2ca100.chunk.js",
     "static/css/main.d78e21ce.chunk.css",
-    "static/js/main.afa0b301.chunk.js"
+    "static/js/main.17f780c3.chunk.js"
   ]
 }
