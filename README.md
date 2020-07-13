@@ -6,7 +6,7 @@ middleware: redux-saga <br/>
 css: @emotion/core <br/>
 etc: react-textarea-autosize, react-tooltip...
 
-## demo
+## Demo
 [https://uoon-dev.github.io/clone-facebook-reply](https://uoon-dev.github.io/clone-facebook-reply)
 
 ## Available Scripts
